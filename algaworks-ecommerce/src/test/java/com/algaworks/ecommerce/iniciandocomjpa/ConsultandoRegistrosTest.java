@@ -1,6 +1,7 @@
 package com.algaworks.ecommerce.iniciandocomjpa;
 
 import com.algaworks.ecommerce.model.Produto;
+import com.algaworks.ecommerce.EntityManagerFabrica;
 import org.junit.*;
 
 public class ConsultandoRegistrosTest extends EntityManagerFabrica {
