@@ -27,7 +27,62 @@ public class OperacoesComTransacaoTest extends EntityManagerFabrica {
 
         Produto produtoVerificacao = entityManager.find(Produto.class, produto.getId());
         Assert.assertNotNull(produtoVerificacao);
+    }
 
+    @Test
+    public void inserirObjetoComMerge(){
+        Produto produto = new Produto();
+
+        produto.setId(4);
+        produto.setNome("4° produto");
+        produto.setDescricao("produto inserido com merge");
+        produto.setPreco(new BigDecimal(50));
+
+        entityManager.getTransaction().begin();
+        entityManager.merge(produto);
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        Produto produtoVerificacao = entityManager.find(Produto.class, produto.getId());
+        Assert.assertNotNull(produtoVerificacao);
+    }
+
+    @Test
+    public void mostrarDifencaPersistMerge() {
+        Produto produtoPersist = new Produto();
+
+        produtoPersist.setId(5);
+        produtoPersist.setNome("Smartphone One Plus");
+        produtoPersist.setDescricao("O processador mais rápido.");
+        produtoPersist.setPreco(new BigDecimal(2000));
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(produtoPersist);
+        produtoPersist.setNome("Smartphone Two Plus");
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        Produto produtoVerificacaoPersist = entityManager.find(Produto.class, produtoPersist.getId());
+        Assert.assertNotNull(produtoVerificacaoPersist);
+
+        Produto produtoMerge = new Produto();
+
+        produtoMerge.setId(6);
+        produtoMerge.setNome("Notebook Dell");
+        produtoMerge.setDescricao("O melhor da categoria.");
+        produtoMerge.setPreco(new BigDecimal(2000));
+
+        entityManager.getTransaction().begin();
+        produtoMerge = entityManager.merge(produtoMerge);
+        produtoMerge.setNome("Notebook Dell 2");
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        Produto produtoVerificacaoMerge = entityManager.find(Produto.class, produtoMerge.getId());
+        Assert.assertNotNull(produtoVerificacaoMerge);
     }
 
     @Test
