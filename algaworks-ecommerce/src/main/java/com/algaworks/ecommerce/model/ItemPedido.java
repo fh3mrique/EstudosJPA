@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Objects;
+import javax.persistence.criteria.CriteriaBuilder;
+import java.math.BigDecimal;
+
 
 @Entity
 @NoArgsConstructor
@@ -12,12 +14,14 @@ import java.util.Objects;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Cliente {
+public class ItemPedido {
 
     @Id
     @EqualsAndHashCode.Include
     private Integer id;
-    private Integer nome;
-    private SexoCliente sexo;
+    private Integer produtoId;
+    private Integer pedidoId;
+    private BigDecimal precoProduto;
+    private Integer quantidade;
 
 }
