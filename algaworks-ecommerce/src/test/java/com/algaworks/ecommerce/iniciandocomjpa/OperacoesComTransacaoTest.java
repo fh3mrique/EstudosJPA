@@ -131,6 +131,21 @@ public class OperacoesComTransacaoTest extends EntityManagerFabrica {
         Assert.assertNotNull(produtoVerificacao);
     }
 
+    @Test
+    public void impedirOperacaoComBD(){
+        Produto produto = entityManager.find(Produto.class, 1);
+
+        entityManager.detach(produto);
+
+        entityManager.getTransaction().begin();
+        produto.setNome("apenas o nome foi atualizado");
+        entityManager.getTransaction().commit();
+
+        Produto produtoVerificacao = entityManager.find(Produto.class, 1);
+
+        Assert.assertEquals("Kindle", produtoVerificacao.getNome());
+        Assert.assertNotNull(produtoVerificacao);
+    }
 
     @Test
     public void abrirEFecharATransacao(){
