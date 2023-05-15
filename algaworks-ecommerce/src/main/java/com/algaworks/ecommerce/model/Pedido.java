@@ -2,10 +2,7 @@ package com.algaworks.ecommerce.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -28,7 +25,23 @@ public class Pedido {
     private LocalDateTime dataConclusao;
     @Column(name = "nota_fiscal_id")
     private Integer notaFiscalId;
+    @Enumerated(EnumType.STRING)
     private StatusPedido status;
     private BigDecimal total;
+
+    /*private String cep;
+    private String logradouro;
+    private String numero;
+    private String rua;
+    private String bairro;
+    private String cidade;
+    private String estado;*/
+
+    @Embedded
+    /*A anotação @Embedded é usada em atributos de uma classe JPA para indicar que o
+    atributo é um objeto embutido em outra entidade JPA. Isso significa que os campos
+    do objeto embutido são mapeados como colunas da tabela da entidade que contém o
+    atributo @Embedded.*/
+    private EnderecoEntregaPedido endereco;
 
 }
