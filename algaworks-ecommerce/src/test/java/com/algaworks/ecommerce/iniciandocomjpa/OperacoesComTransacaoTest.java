@@ -30,6 +30,52 @@ public class OperacoesComTransacaoTest extends EntityManagerFabrica {
 
     }
 
+    @Test
+    public void removerObjeto(){
+        Produto produto = entityManager.find(Produto.class, 3);
+
+        entityManager.getTransaction().begin();
+            entityManager.remove(produto);
+        entityManager.getTransaction().commit();
+
+        Produto produtoVerificacao = entityManager.find(Produto.class, 3);
+
+        Assert.assertNull(produtoVerificacao);
+    }
+
+    @Test
+    public void atualizarObjeto(){
+        Produto produto = new Produto();
+        produto.setId(1);
+        produto.setNome("nome atualizado");
+        produto.setDescricao("papinho furado");
+
+        entityManager.getTransaction().begin();
+            entityManager.merge(produto);
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        Produto produtoVerificacao = entityManager.find(Produto.class, 1);
+
+        Assert.assertEquals("nome atualizado", produto.getNome());
+        Assert.assertNotNull(produtoVerificacao);
+    }
+
+    @Test
+    public void atualizarObjetoGerenciado(){
+        Produto produto = entityManager.find(Produto.class, 1);
+
+        entityManager.getTransaction().begin();
+            produto.setNome("apenas o nome foi atualizado");
+        entityManager.getTransaction().commit();
+
+        Produto produtoVerificacao = entityManager.find(Produto.class, 1);
+
+        Assert.assertEquals("apenas o nome foi atualizado", produto.getNome());
+        Assert.assertNotNull(produtoVerificacao);
+    }
+
 
     @Test
     public void abrirEFecharATransacao(){
