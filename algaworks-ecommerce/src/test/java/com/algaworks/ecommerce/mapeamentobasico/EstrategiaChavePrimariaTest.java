@@ -31,8 +31,30 @@ public class EstrategiaChavePrimariaTest extends EntityManagerFabrica {
         Assert.assertNotNull(categoriaVerificacao);
     }
 
+    /*GenerationType.SEQUENCE: Utiliza sequências do banco de dados para gerar valores
+    automaticamente. É importante ressaltar que nem todos os bancos de dados suportam
+    sequências.*/
     @Test
     public void testarEstrategiaChave(){
+        Categoria categoria = new Categoria();
+
+        categoria.setNome("Eletronico");
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(categoria);
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        Categoria categoriaVerificacao = entityManager.find(Categoria.class, categoria.getId());
+
+        Assert.assertNotNull(categoriaVerificacao);
+    }
+
+    /*GenerationType.TABLE: Utiliza uma tabela específica no banco de dados para gerar valores
+    automaticamente.O framework mantém essa tabela para controlar a geração dos valores.*/
+    @Test
+    public void testarEstrategiaTable(){
         Categoria categoria = new Categoria();
 
         categoria.setNome("Eletronico");
