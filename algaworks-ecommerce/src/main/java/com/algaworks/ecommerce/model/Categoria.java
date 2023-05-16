@@ -2,10 +2,7 @@ package com.algaworks.ecommerce.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -19,6 +16,7 @@ public class Categoria {
 
     @Id
     @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String nome;
     @Column(name = "categoria_pai_id")
