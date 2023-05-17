@@ -5,20 +5,27 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import com.algaworks.ecommerce.model.Cliente;
 
 
-@Entity
+
+//@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
 @Table(name = "pedido")
 public class Pedido {
 
     @Id
     @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
     @Column(name = "data_pedido")
     private LocalDateTime dataPedido;
     @Column(name = "data_conclusao")
@@ -28,14 +35,6 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
     private BigDecimal total;
-
-    /*private String cep;
-    private String logradouro;
-    private String numero;
-    private String rua;
-    private String bairro;
-    private String cidade;
-    private String estado;*/
 
     @Embedded
     /*A anotação @Embedded é usada em atributos de uma classe JPA para indicar que o

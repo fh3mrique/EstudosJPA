@@ -23,7 +23,8 @@ public class MapeamentoObjetoEmbutidoTest extends EntityManagerFabrica {
         entrega.setEstado("PE");
 
         Pedido pedido = new Pedido();
-        pedido.setId(1);
+        //COMENTADO POR ESTAMOS USANDO STRATEGY.INDENTITY
+       // pedido.setId(1);
         pedido.setDataPedido(LocalDateTime.now());
         pedido.setNotaFiscalId(1);
         pedido.setTotal(new BigDecimal(100));
@@ -41,7 +42,5 @@ public class MapeamentoObjetoEmbutidoTest extends EntityManagerFabrica {
         Assert.assertNotNull(pedidoVerificao);
         Assert.assertNotNull(pedidoVerificao.getEndereco());
         Assert.assertNotNull(pedidoVerificao.getEndereco().getCep());
-
-
     }
 }

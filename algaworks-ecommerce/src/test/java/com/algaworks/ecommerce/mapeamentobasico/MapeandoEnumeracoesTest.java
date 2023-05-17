@@ -11,7 +11,8 @@ public class MapeandoEnumeracoesTest extends EntityManagerFabrica {
     @Test
     public void testarEnum(){
         Cliente cliente = new Cliente();
-        cliente.setId(4);
+        //COMENTADO POR ESTAMOS USANDO STRATEGY.INDENTITY
+        //cliente.setId(4);
         cliente.setNome("Hazard");
         cliente.setSexo(SexoCliente.MASCULINO);
 
@@ -24,6 +25,5 @@ public class MapeandoEnumeracoesTest extends EntityManagerFabrica {
         Cliente clienteVerificacao = entityManager.find(Cliente.class, cliente.getId());
 
         Assert.assertNotNull(clienteVerificacao);
-
     }
 }

@@ -13,8 +13,8 @@ public class OperacoesComTransacaoTest extends EntityManagerFabrica {
     @Test
     public void inserirOPrimeiroObjeto(){
         Produto produto = new Produto();
-
-        produto.setId(2);
+        //COMENTADO PQ ESTAMOS USANDO STRATEGY.INDENTITY
+        //produto.setId(2);
         produto.setNome("Oyasumi punpun");
         produto.setDescricao("O melhor mánga");
         produto.setPreco(new BigDecimal(50));
@@ -32,8 +32,8 @@ public class OperacoesComTransacaoTest extends EntityManagerFabrica {
     @Test
     public void inserirObjetoComMerge(){
         Produto produto = new Produto();
-
-        produto.setId(4);
+        //COMENTADO PQ ESTAMOS USANDO STRATEGY.INDENTITY
+        //produto.setId(4);
         produto.setNome("4° produto");
         produto.setDescricao("produto inserido com merge");
         produto.setPreco(new BigDecimal(50));
@@ -51,8 +51,8 @@ public class OperacoesComTransacaoTest extends EntityManagerFabrica {
     @Test
     public void mostrarDifencaPersistMerge() {
         Produto produtoPersist = new Produto();
-
-        produtoPersist.setId(5);
+        //COMENTADO PQ ESTAMOS USANDO STRATEGY.INDENTITY
+        //produtoPersist.setId(5);
         produtoPersist.setNome("Smartphone One Plus");
         produtoPersist.setDescricao("O processador mais rápido.");
         produtoPersist.setPreco(new BigDecimal(2000));
@@ -68,8 +68,8 @@ public class OperacoesComTransacaoTest extends EntityManagerFabrica {
         Assert.assertNotNull(produtoVerificacaoPersist);
 
         Produto produtoMerge = new Produto();
-
-        produtoMerge.setId(6);
+        //COMENTADO PQ ESTAMOS USANDO STRATEGY.INDENTITY
+        //produtoMerge.setId(6);
         produtoMerge.setNome("Notebook Dell");
         produtoMerge.setDescricao("O melhor da categoria.");
         produtoMerge.setPreco(new BigDecimal(2000));
@@ -101,7 +101,7 @@ public class OperacoesComTransacaoTest extends EntityManagerFabrica {
     @Test
     public void atualizarObjeto(){
         Produto produto = new Produto();
-        produto.setId(1);
+        //produto.setId(1);
         produto.setNome("nome atualizado");
         produto.setDescricao("papinho furado");
 

@@ -7,7 +7,6 @@ import org.junit.*;
 public class ConsultandoRegistrosTest extends EntityManagerFabrica {
 
     //MÉTODOS PARA TESTER AS CONSULTAS AO BANCO
-
     @Test
     public void buscarPorIndentificador(){
         /*O método entityManager.find() é um dos métodos da API JPA (Java Persistence API) que permite buscar

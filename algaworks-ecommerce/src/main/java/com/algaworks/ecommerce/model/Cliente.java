@@ -1,30 +1,25 @@
 package com.algaworks.ecommerce.model;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Objects;
 
-@Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
 @Table(name = "cliente")
 public class Cliente {
 
-    @Id
     @EqualsAndHashCode.Include
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nome;
-    @Column(name = "sexo_cliente")
-    @Enumerated(EnumType.STRING)
-    /*A anotação @Enumerated(EnumType.STRING) é usada em classes JPA para mapear
-    campos de enumeração (enum) para o banco de dados. Ela especifica se o enum
-    deve ser mapeado como uma string ou um número inteiro. Quando usado com
-    EnumType.STRING, a anotação mapeia o valor do enum como uma string, em vez de
-    um número inteiro.*/
-    private SexoCliente sexo;
 
+    private String nome;
+
+    @Enumerated(EnumType.STRING)
+    private SexoCliente sexo;
 }

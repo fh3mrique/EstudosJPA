@@ -10,8 +10,8 @@ public class PrimeioCrudTest extends EntityManagerFabrica {
     @Test
     public void inserirCliente(){
         Cliente cliente = new Cliente();
-
-        cliente.setId(3);
+        //COMENTADO PQ ESTAMOS USANDO STRATEGY.INDENTITY
+        //cliente.setId(3);
         cliente.setNome("Neymar");
 
         entityManager.getTransaction().begin();
@@ -35,8 +35,8 @@ public class PrimeioCrudTest extends EntityManagerFabrica {
     @Test
     public void atualizarCliente(){
         Cliente cliente = new Cliente();
-
-        cliente.setId(2);
+        //COMENTADO PQ ESTAMOS USANDO STRATEGY.INDENTITY
+        //cliente.setId(2);
         cliente.setNome("De bruyne");
 
         entityManager.getTransaction().begin();
