@@ -8,7 +8,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class RelacionamentosManyToOneTest extends EntityManagerFabrica {
+public class RelacionamentosOneToManyTest extends EntityManagerFabrica {
 
     @Test
     public void testarRelacionamento(){
@@ -28,10 +28,9 @@ public class RelacionamentosManyToOneTest extends EntityManagerFabrica {
 
         entityManager.clear();
 
-        Pedido pedidoVerificacao = entityManager.find(Pedido.class, pedido.getId());
+        Cliente pedidoVerificacao = entityManager.find(Cliente.class, cliente.getId());
 
-        Assert.assertNotNull(pedidoVerificacao.getCliente());
-
+        Assert.assertFalse(pedidoVerificacao.getPedidos().isEmpty());
     }
 
     @Test
@@ -54,21 +53,14 @@ public class RelacionamentosManyToOneTest extends EntityManagerFabrica {
         itemPedido.setPedido(pedido);
 
         entityManager.getTransaction().begin();
-            entityManager.persist(pedido);
-            entityManager.persist(itemPedido);
+        entityManager.persist(pedido);
+        entityManager.persist(itemPedido);
         entityManager.getTransaction().commit();
 
         entityManager.clear();
 
-        ItemPedido itemPedidoVerificacao = entityManager.find(ItemPedido.class, itemPedido.getId());
+        Pedido PedidoVerificacao = entityManager.find(Pedido.class, pedido.getId());
 
-        Assert.assertNotNull(itemPedidoVerificacao.getPedido());
-        Assert.assertNotNull(itemPedidoVerificacao.getProduto());
-
-        //TESTANDO O CALCULO DE VALOR, para funionar
-        //descomente o atributo preçoTotal e o método calcularpreçoTotal
-        //que estão na classe ItemPedido
-        //double valorEsperado = 1500;
-        //Assert.assertEquals(valorEsperado, itemPedidoVerificacao.calcularPreçoTotal(produto));
+        Assert.assertFalse(PedidoVerificacao.getItens().isEmpty());
     }
 }

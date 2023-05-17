@@ -20,12 +20,25 @@ public class ItemPedido {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "produto_id")
-    private Integer produtoId;
-    @Column(name = "pedido_id")
-    private Integer pedidoId;
+
+    @ManyToOne
+    @JoinColumn(name = "produto_id")
+    private Produto produto;
+
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
+
     @Column(name = "preco_produto")
     private BigDecimal precoProduto;
+
     private Integer quantidade;
+
+//    private Double preçoTotal;
+
+//    public double calcularPreçoTotal(Produto produto){
+//        double preçoTotal = this.quantidade *  produto.getPreco().doubleValue();
+//        return preçoTotal;
+//    }
 
 }

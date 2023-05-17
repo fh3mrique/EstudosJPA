@@ -5,6 +5,8 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import com.algaworks.ecommerce.model.Cliente;
 
 
@@ -23,17 +25,27 @@ public class Pedido {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    //MUITOS pedido PARA UM cliente
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    @OneToMany(mappedBy = "pedido")
+    private List<ItemPedido> itens;
+
     @Column(name = "data_pedido")
     private LocalDateTime dataPedido;
+
     @Column(name = "data_conclusao")
     private LocalDateTime dataConclusao;
+
     @Column(name = "nota_fiscal_id")
     private Integer notaFiscalId;
+
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
+
     private BigDecimal total;
 
     @Embedded
