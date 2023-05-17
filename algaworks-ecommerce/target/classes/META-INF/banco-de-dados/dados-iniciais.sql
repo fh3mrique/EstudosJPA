@@ -3,3 +3,7 @@ insert into produto (id, nome, preco, descricao) values (3, 'PS4', 499.0, 'vIDEO
 
 insert into cliente (id, nome) values (1, 'Lionel Messi');
 insert into cliente (id, nome) values (2, 'Cristiano Ronaldo');
+
+insert into pedido (id, cliente_id, data_pedido, total, status) values (1, 1, sysdate(), 100.0, 'AGUARDANDO');
+
+insert into item_pedido (id, pedido_id, produto_id, preco_produto, quantidade) values (1, 1, 1, 5.0, 2);
