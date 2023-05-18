@@ -27,7 +27,7 @@ public class Pedido {
     private Integer id;
 
     //MUITOS pedido PARA UM cliente
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
@@ -46,9 +46,6 @@ public class Pedido {
     @Column(name = "data_conclusao")
     private LocalDateTime dataConclusao;
 
-    @Column(name = "nota_fiscal_id")
-    private Integer notaFiscalId;
-
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
@@ -59,6 +56,6 @@ public class Pedido {
     atributo é um objeto embutido em outra entidade JPA. Isso significa que os campos
     do objeto embutido são mapeados como colunas da tabela da entidade que contém o
     atributo @Embedded.*/
-    private EnderecoEntregaPedido endereco;
+    private EnderecoEntregaPedido enderecoEntrega;
 
 }

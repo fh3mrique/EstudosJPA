@@ -18,8 +18,15 @@ public class Estoque {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "produto_id")
-    private Integer produtoId;
+
+    @OneToOne(optional = false)
+    /*Quando optional é definido como false, o JPA garante que a associação seja
+     sempre estabelecida com um objeto Produto. Se uma tentativa de persistir
+     ou atualizar uma instância dessa entidade ocorrer sem que um objeto Produto
+     seja atribuído, uma exceção será lançada pelo JPA.*/
+    @JoinColumn(name = "produto_id")
+    private Produto produto;
+
     private Integer quantidade;
 
 }

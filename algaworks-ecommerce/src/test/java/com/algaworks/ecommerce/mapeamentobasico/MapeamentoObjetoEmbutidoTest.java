@@ -1,46 +1,46 @@
 package com.algaworks.ecommerce.mapeamentobasico;
 
 import com.algaworks.ecommerce.EntityManagerFabrica;
-import com.algaworks.ecommerce.model.EnderecoEntregaPedido;
-import com.algaworks.ecommerce.model.Pedido;
-import com.algaworks.ecommerce.model.StatusPedido;
+import com.algaworks.ecommerce.model.*;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class MapeamentoObjetoEmbutidoTest extends EntityManagerFabrica {
 
     @Test
-    public void analisarMapeamentoObjetoEmbutido(){
-        EnderecoEntregaPedido entrega = new EnderecoEntregaPedido();
-        entrega.setCep("0000-000");
-        entrega.setLogradouro("logradouro");
-        entrega.setNumero("69");
-        entrega.setRua("Burra nua");
-        entrega.setBairro("Sitio nov");
-        entrega.setEstado("PE");
+    public void analisarMapeamentoObjetoEmbutido() {
+        Cliente cliente = entityManager.find(Cliente.class, 1);
+
+
+        EnderecoEntregaPedido endereco = new EnderecoEntregaPedido();
+        endereco.setCep("00000-00");
+        endereco.setLogradouro("Rua das Laranjeiras");
+        endereco.setNumero("123");
+        endereco.setBairro("Centro");
+        endereco.setCidade("Uberlândia");
+        endereco.setEstado("MG");
 
         Pedido pedido = new Pedido();
-        //COMENTADO POR ESTAMOS USANDO STRATEGY.INDENTITY
-       // pedido.setId(1);
+        // pedido.setId(1); Comentado porque estamos utilizando IDENTITY
         pedido.setDataPedido(LocalDateTime.now());
-        pedido.setNotaFiscalId(1);
-        pedido.setTotal(new BigDecimal(100));
         pedido.setStatus(StatusPedido.AGUARDANDO);
-        pedido.setEndereco(entrega);
+        pedido.setTotal(new BigDecimal(1000));
+        pedido.setEnderecoEntrega(endereco);
+        pedido.setCliente(cliente);
 
         entityManager.getTransaction().begin();
-            entityManager.persist(pedido);
+        entityManager.persist(pedido);
         entityManager.getTransaction().commit();
 
         entityManager.clear();
 
-        Pedido pedidoVerificao = entityManager.find(Pedido.class, pedido.getId());
-
-        Assert.assertNotNull(pedidoVerificao);
-        Assert.assertNotNull(pedidoVerificao.getEndereco());
-        Assert.assertNotNull(pedidoVerificao.getEndereco().getCep());
+        Pedido pedidoVerificacao = entityManager.find(Pedido.class, pedido.getId());
+        Assert.assertNotNull(pedidoVerificacao);
+        Assert.assertNotNull(pedidoVerificacao.getEnderecoEntrega());
+        Assert.assertNotNull(pedidoVerificacao.getEnderecoEntrega().getCep());
     }
 }

@@ -23,8 +23,8 @@ public class NotaFiscal {
     private String nome;
 
     /*UMA NotaFiscal TEM UM Pedido e UM Pedido TEM UMA NotaFiscal*/
-    @OneToOne
-    //@JoinColumn(name = "pedido_id")
+    @OneToOne(optional = false)
+//    @JoinColumn(name = "pedido_id")
     @JoinTable(name = "pedido_nota_fiscal",
     joinColumns = @JoinColumn(name = "nota_fiscal_id", unique = true),
     inverseJoinColumns = @JoinColumn(name = "pedido_id", unique = true))

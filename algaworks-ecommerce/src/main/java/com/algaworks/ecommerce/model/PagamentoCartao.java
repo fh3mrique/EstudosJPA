@@ -20,7 +20,7 @@ public class PagamentoCartao {
     private Integer id;
 
     /*UM Pedido tem um PagamentoCartao e UM PagamentoCartao tem UM Pedido*/
-    @OneToOne
+    @OneToOne(optional = false)
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 
