@@ -19,10 +19,16 @@ public class NotaFiscal {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String nome;
-    @Column(name = "pedido_id")
-    private Integer pedidoId;
+
+    /*UMA NotaFiscal TEM UM Pedido e UM Pedido TEM UMA NotaFiscal*/
+    @OneToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
+
     private String xml;
+
     @Column(name = "data_emissao")
     private Date dataEmissao;
 

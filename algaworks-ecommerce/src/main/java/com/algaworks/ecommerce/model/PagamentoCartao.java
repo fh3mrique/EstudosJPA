@@ -18,9 +18,14 @@ public class PagamentoCartao {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "pedido_id")
-    private Integer pedidoId;
+
+    /*UM Pedido tem um PagamentoCartao e UM PagamentoCartao tem UM Pedido*/
+    @OneToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
+
     @Enumerated(EnumType.STRING)
     private StatusPagamento status;
+
     private String numero;
 }
