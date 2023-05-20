@@ -18,7 +18,7 @@ public class ContextoDePesistenciaTest extends EntityManagerFabrica {
         banco de dados apenas nos atributos modificados. Isso evita a necessidade
         de atualizar todos os atributos e simplifica o processo de persistência,
         mantendo a consistência entre a entidade e o banco de dados.*/
-        
+
         entityManager.getTransaction().begin();
         //Quando usamos find o objeto fica managed
         Produto produto = entityManager.find(Produto.class, 1);

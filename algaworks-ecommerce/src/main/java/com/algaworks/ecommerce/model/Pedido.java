@@ -40,8 +40,11 @@ public class Pedido {
     @OneToOne(mappedBy = "pedido")
     private NotaFiscal notaFiscal;
 
-    @Column(name = "data_pedido")
-    private LocalDateTime dataPedido;
+    @Column(name = "data_criacao")
+    private LocalDateTime dataCriacao;
+
+    @Column(name = "data_ultima_atualizacao")
+    private LocalDateTime dataUltimaAtualizacao;
 
     @Column(name = "data_conclusao")
     private LocalDateTime dataConclusao;
@@ -57,5 +60,18 @@ public class Pedido {
     do objeto embutido são mapeados como colunas da tabela da entidade que contém o
     atributo @Embedded.*/
     private EnderecoEntregaPedido enderecoEntrega;
+
+    //METODOS DE CALBACKS
+    @PrePersist
+    /*O PrePersist é acionado apenas uma vez para cada entidade*/
+    public void aoPesistir(){
+        dataCriacao = LocalDateTime.now();
+    }
+    @PreUpdate
+    /*Não é acionado na hora de persistir pela primeira vez, mas é acionado sempre
+    que fizemos uma operação de update*/
+    public void aoAtualizar(){
+        dataUltimaAtualizacao = LocalDateTime.now();
+    }
 
 }

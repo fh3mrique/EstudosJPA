@@ -17,7 +17,7 @@ public class RelacionamentosOneToManyTest extends EntityManagerFabrica {
         Pedido pedido = new Pedido();
 
         pedido.setStatus(StatusPedido.AGUARDANDO);
-        pedido.setDataPedido(LocalDateTime.now());
+        pedido.setDataCriacao(LocalDateTime.now());
         pedido.setTotal(BigDecimal.TEN);
 
         pedido.setCliente(cliente);
@@ -41,7 +41,7 @@ public class RelacionamentosOneToManyTest extends EntityManagerFabrica {
         //ASSOCIEI MESSI A UM PEDIDO
         Pedido pedido = new Pedido();
         pedido.setStatus(StatusPedido.AGUARDANDO);
-        pedido.setDataPedido(LocalDateTime.now());
+        pedido.setDataCriacao(LocalDateTime.now());
         pedido.setTotal(BigDecimal.TEN);
         pedido.setCliente(cliente);
 
