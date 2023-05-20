@@ -61,17 +61,56 @@ public class Pedido {
     atributo @Embedded.*/
     private EnderecoEntregaPedido enderecoEntrega;
 
+
+
+
     //METODOS DE CALBACKS
+
+    //@PrePersist
+    // @PreUpdate
+    public void calcularTotal() {
+        if (itens != null) {
+            total = itens.stream().map(ItemPedido::getPrecoProduto)
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+        }
+    }
     @PrePersist
     /*O PrePersist é acionado apenas uma vez para cada entidade*/
     public void aoPesistir(){
         dataCriacao = LocalDateTime.now();
+        calcularTotal();
     }
     @PreUpdate
     /*Não é acionado na hora de persistir pela primeira vez, mas é acionado sempre
     que fizemos uma operação de update*/
     public void aoAtualizar(){
         dataUltimaAtualizacao = LocalDateTime.now();
+        calcularTotal();
+    }
+
+    @PostPersist
+    public void aposPersistir() {
+        System.out.println("Após persistir Pedido.");
+    }
+
+    @PostUpdate
+    public void aposAtualizar() {
+        System.out.println("Após atualizar Pedido.");
+    }
+
+    @PreRemove
+    public void aoRemover() {
+        System.out.println("Antes de remover Pedido.");
+    }
+
+    @PostRemove
+    public void aposRemover() {
+        System.out.println("Após remover Pedido.");
+    }
+
+    @PostLoad
+    public void aoCarregar() {
+        System.out.println("Após carregar o Pedido.");
     }
 
 }
