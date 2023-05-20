@@ -1,5 +1,7 @@
 package com.algaworks.ecommerce.model;
 
+import com.algaworks.ecommerce.listener.GerarNotaFiscalListener;
+import com.algaworks.ecommerce.listener.ListenerGenerico;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,6 +21,7 @@ import com.algaworks.ecommerce.model.Cliente;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "pedido")
+@EntityListeners({GerarNotaFiscalListener.class, ListenerGenerico.class})
 public class Pedido {
 
     @Id
@@ -61,8 +64,10 @@ public class Pedido {
     atributo @Embedded.*/
     private EnderecoEntregaPedido enderecoEntrega;
 
-
-
+    //MÉTODOS
+    public boolean isPago(){
+       return StatusPedido.PAGO.equals(status);
+    }
 
     //METODOS DE CALBACKS
 
