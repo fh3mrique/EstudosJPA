@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 @Getter
@@ -28,6 +29,15 @@ public class Produto {
     private String descricao;
 
     private BigDecimal preco;
+
+    /*A propriedade updatable = false na anotação @Column indica que o campo
+    correspondente no banco de dados não pode ser atualizado. Isso significa que,
+    uma vez que o valor é definido, ele não pode ser modificado posteriormente*/
+    @Column(name = "data_criacao", updatable = false)
+    private LocalDateTime dataCriacao;
+
+    @Column(name = "data_ultima_atualizacao", insertable = false)
+    private LocalDateTime dataUltimaAtualizacao;
 
     /*um Produto tem MUITAS Categorias e uma Categoria tem MUITOS Produtos */
     @ManyToMany
