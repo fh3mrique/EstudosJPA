@@ -35,8 +35,9 @@ public class ChaveCompostaTest extends EntityManagerFabrica {
         itemPedido.setPedido(pedido);
         itemPedido.setProduto(produto);
         //id composto de ItemPedido
-        itemPedido.setPedidoId(pedido.getId());
-        itemPedido.setProdutoId(produto.getId());
+        //itemPedido.setPedidoId(pedido.getId()); @IdClass
+        //itemPedido.setProdutoId(produto.getId()); @IdClass
+        itemPedido.setId(new ItemPedidoId(pedido.getId(), produto.getId()));
 
         entityManager.persist(itemPedido);
 

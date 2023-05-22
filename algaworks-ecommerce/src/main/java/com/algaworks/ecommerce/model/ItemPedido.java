@@ -15,18 +15,10 @@ import java.math.BigDecimal;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "item_pedido")
-@IdClass(ItemPedidoId.class)
 public class ItemPedido{
 
-    @Id
-    @EqualsAndHashCode.Include
-    @Column(name = "pedido_id")
-    private Integer pedidoId;
-
-    @Id
-    @EqualsAndHashCode.Include
-    @Column(name = "produto_id")
-    private Integer produtoId;
+    @EmbeddedId//ID incorporado
+    private ItemPedidoId id;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "produto_id", insertable = false, updatable = false)

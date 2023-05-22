@@ -46,6 +46,7 @@ public class RelacionamentosManyToOneTest extends EntityManagerFabrica {
         pedido.setTotal(BigDecimal.TEN);
         pedido.setCliente(cliente);
 
+
         //ASSOCIANDO UM PRODUTO E UM PEDIDO A UMA COMPRA
         ItemPedido itemPedido = new ItemPedido();
         itemPedido.setQuantidade(3);
