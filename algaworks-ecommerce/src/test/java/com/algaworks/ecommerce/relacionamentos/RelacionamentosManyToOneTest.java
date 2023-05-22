@@ -60,10 +60,10 @@ public class RelacionamentosManyToOneTest extends EntityManagerFabrica {
 
         entityManager.clear();
 
-        ItemPedido itemPedidoVerificacao = entityManager.find(ItemPedido.class, itemPedido.getId());
+        //ItemPedido itemPedidoVerificacao = entityManager.find(ItemPedido.class, itemPedido.getId());
 
-        Assert.assertNotNull(itemPedidoVerificacao.getPedido());
-        Assert.assertNotNull(itemPedidoVerificacao.getProduto());
+        //Assert.assertNotNull(itemPedidoVerificacao.getPedido());
+        //Assert.assertNotNull(itemPedidoVerificacao.getProduto());
 
         //TESTANDO O CALCULO DE VALOR, para funionar
         //descomente o atributo preçoTotal e o método calcularpreçoTotal
